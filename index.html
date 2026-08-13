@@ -12,7 +12,7 @@
             color: white;
             font-family: Arial, sans-serif;
             text-align: center;
-            padding-bottom: 100px; /* 固定広告とコンテンツの重なりを防止 */
+            padding-bottom: 120px; /* 広告とプライバシーポリシー等の被りを防ぐため少し広めに変更 */
         }
 
         h1 {
@@ -79,7 +79,7 @@
             background-color: #121212;
             z-index: 1000;
             padding-top: 10px;
-            padding-bottom: calc(10px + env(safe-area-inset-bottom)); /* Safe Area対応 */
+            padding-bottom: calc(10px + env(safe-area-inset-bottom));
             border-top: 1px solid #333;
         }
     </style>
@@ -115,6 +115,7 @@
     </div>
 
 
+    <!-- お問い合わせ & フッター領域 -->
     <div style="margin-top: 50px; padding: 20px; border-top: 1px solid #333;">
         <p style="color: #aaaaaa; font-size: 14px; margin-bottom: 10px;">
             ご意見・バグ報告・お問い合わせは以下よりお願いいたします
@@ -126,6 +127,11 @@
            rel="noopener noreferrer">
             お問い合わせ・バグ報告
         </a>
+
+        <!-- プライバシーポリシーリンクを追加 -->
+        <p style="margin-top: 15px; font-size: 12px;">
+            <a href="privacy.html" style="color: #aaaaaa; text-decoration: underline;">プライバシーポリシー</a>
+        </p>
     </div>
 
     <!-- 画面固定広告 -->
