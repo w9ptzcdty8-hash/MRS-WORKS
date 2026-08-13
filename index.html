@@ -12,7 +12,7 @@
             color: white;
             font-family: Arial, sans-serif;
             text-align: center;
-            padding-bottom: 100px;
+            padding-bottom: 100px; /* 固定広告とコンテンツの重なりを防止 */
         }
 
         h1 {
@@ -66,6 +66,22 @@
         .tool-button:hover {
             opacity: 0.8;
         }
+
+        /* 画面最下部固定広告 */
+        .ad-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #121212;
+            z-index: 1000;
+            padding-top: 10px;
+            padding-bottom: calc(10px + env(safe-area-inset-bottom)); /* Safe Area対応 */
+            border-top: 1px solid #333;
+        }
     </style>
 </head>
 
@@ -76,28 +92,6 @@
 <p class="subtitle">
     Top page of MRS WORKS
 </p>
-
-
-<!-- 広告表示、変更後 -->
-<div style="
-    position: fixed;
-    bottom: 0; 
-    left: 0; 
-    width: 100%; 
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
-    background-color: #121212; 
-    z-index: 1000; 
-    padding: 10px 0;
-    ">
-
-        <div style="max-width: 100%;">
-            <!-- admax -->
-            <script src="https://adm.shinobi.jp/s/1596a166ea799d6e2c02f5a97ee144c2"></script>
-            <!-- admax -->
-        </div>
-    </div>
 
     <!-- ボタン -->
     <div class="container">
@@ -118,7 +112,6 @@
             <a class="tool-button" href="https://mrs-tools.pages.dev">GO</a>
         </div>
 
-
     </div>
 
 
@@ -133,6 +126,15 @@
            rel="noopener noreferrer">
             お問い合わせ・バグ報告
         </a>
+    </div>
+
+    <!-- 画面固定広告 -->
+    <div class="ad-banner">
+        <div style="max-width: 100%;">
+            <!-- admax -->
+            <script src="https://adm.shinobi.jp/s/1596a166ea799d6e2c02f5a97ee144c2"></script>
+            <!-- admax -->
+        </div>
     </div>
 
 </body>
