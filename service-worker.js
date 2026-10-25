@@ -2,7 +2,7 @@
 
 // Change RELEASE whenever a cached file changes. Keep the previous worker in
 // control until all its pages close; do not mix releases with skipWaiting/claim.
-const RELEASE = '20261025-ad-band-2';
+const RELEASE = '20261025-redirect-fix-3';
 const BASE = new URL('./', self.location.href);
 const PREFIX = 'mrs-works-home:' + BASE.pathname + ':';
 const CACHE = PREFIX + RELEASE;
@@ -61,7 +61,17 @@ self.addEventListener('fetch', event => {
   event.respondWith((async () => {
     const cache = await caches.open(CACHE);
     const saved = await cache.match(canonical.href);
-    if (saved) return saved; // No network wait, including weak/blackholed connections.
+    if (saved) {
+      // Cache.addAll may follow /index.html -> / (or /privacy.html -> /privacy).
+      // Safari rejects a redirected cached response for a navigation request.
+      // Rebuild the response without its redirect history; keep its bytes and metadata.
+      if (saved.redirected) {
+        return new Response(saved.body, {
+          status: saved.status, statusText: saved.statusText, headers: saved.headers
+        });
+      }
+      return saved; // No network wait, including weak/blackholed connections.
+    }
     try {
       return await networkWithTimeout(request);
     } catch {
