@@ -2,7 +2,7 @@
 
 // Change RELEASE whenever a cached file changes. Keep the previous worker in
 // control until all its pages close; do not mix releases with skipWaiting/claim.
-const RELEASE = '20261025-redirect-fix-3';
+const RELEASE = '20261030-kids-link-4';
 const BASE = new URL('./', self.location.href);
 const PREFIX = 'mrs-works-home:' + BASE.pathname + ':';
 const CACHE = PREFIX + RELEASE;
